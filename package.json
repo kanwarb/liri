@@ -1,0 +1,32 @@
+{
+  "name": "liri",
+  "version": "1.0.0",
+  "description": "Language interpretation and Recoginition Interface",
+  "main": "liri.js",
+  "scripts": {
+    "test": "node liri.js "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kanwarb/liri.git"
+  },
+  "keywords": [
+    "liri",
+    "siri",
+    "language",
+    "recognition"
+  ],
+  "author": "Kanwar Batra",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kanwarb/liri/issues"
+  },
+  "homepage": "https://github.com/kanwarb/liri#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "dotenv": "^7.0.0",
+    "inquirer": "^6.2.2",
+    "node-spotify-api": "^1.0.7"
+  },
+  "devDependencies": {}
+}
