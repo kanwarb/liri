@@ -80,21 +80,17 @@ if( process.argv[2] === undefined && process.argv[3] === undefined ){
             if(e){
                 return console.log("Error occured: " + e);
             }
-            console.log(data.tracks.items.length);
             for(i=0;i< data.tracks.items.length;i++) {
                  if(data.tracks.items[i].name === myoption){
     
-                     var nameObj = data.tracks.items[i].album.Artists;
-                     Object.keys(nameObj).forEach(function(key){
-                         if(key === 'name'){
-                              artistName = nameObj[key];
-                         }
-                     })
-                     console.log("Artists: ", artistName);
-                     console.log("Preview: ",data.tracks.items[i].preview_url);
+                     console.log("Artists       : ", data.tracks.items[i].album.artists[0].name);
+                     console.log("The Song      : ", data.tracks.items[i].name);
+                     console.log("Preview link  : ",data.tracks.items[i].preview_url);
+                     console.log("Song Album    : ", data.tracks.items[i].album.name);
+                    //console.log(data.tracks);
                  }
             }
-         //console.log( data.tracks.items);
+            
         });
      }
     
