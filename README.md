@@ -44,8 +44,8 @@
 
 ![concert-this](images/concert-this.png)
 
-![spotify-this-song](images/spotify-this-song.png)
+![spotify-this-song](images/spotify-this-song.PNG)
 
-![movie-this](images/movie-this.png)
+![movie-this](images/movie-this.PNG)
 
-![do-what-it-says](images/do-what-it-says.png)
+![do-what-it-says](images/do-what-it-says.PNG)
