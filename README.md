@@ -42,10 +42,10 @@
          
 ### Examples of commands in action
 
-![concert-this](concert-this.png)
+![concert-this](images/concert-this.png)
 
-![spotify-this-song](spotify-this-song.png)
+![spotify-this-song](images/spotify-this-song.png)
 
-![movie-this](movie-this.png)
+![movie-this](images/movie-this.png)
 
-![do-what-it-says](do-what-it-says.png)
+![do-what-it-says](images/do-what-it-says.png)
