@@ -14,7 +14,7 @@ var artistName;
 
 if (process.argv[2] === undefined && process.argv[3] === undefined) {
     console.log("Please make one of the following selections");
-    console.log("concert-this <artist> or spotify-the-song <song Title> or  movie <movie Name> ");
+    console.log("concert-this <artist> or  \nspotify-the-song <song Title> or  \nmovie-this <movie Name> or \ndo-what-it-says");
 }
 function makeAChoice(){
 switch (myChoice) {
@@ -32,8 +32,12 @@ switch (myChoice) {
     case "do-what-it-says":
          doWhatItSays();
          break;
+    default: 
+        console.log("Please make one of the following selections");
+        console.log("concert-this <artist> or  \nspotify-the-song <song Title> or  \nmovie-this <movie Name> or \ndo-what-it-says");
+        break;
+}   
   }
-}
 function getMyOptions() {
     if (myChoice === "spotify-this-song") {
         for (i = 4; i < myargs.length; i++) {
@@ -134,13 +138,18 @@ function doWhatItSays()
 {
     var randomText = fs.readFile("./random.txt", function(err, data){
         console.log(data.toString());
+        console.log(data.toString().split(","));
         var command= data.toString().split(",");
-        console.log(command);
-
-        makeAChoice();
-        
+        myargs =  command.split(" ");
+        console.log(myargs);
 
     });
 }
 
+String.prototype.ucwords = function() {
+    str = this.trim();
+    return str.replace(/(^([a-zA-Z\p{M}]))|([ -][a-zA-Z\p{M}])/g, function(s){
+        return s.toUpperCase();
+    });
+};
 makeAChoice();
