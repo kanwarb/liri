@@ -3,10 +3,12 @@ var keys = require("./keys.js");
 var axios = require("axios");
 var Spotify = require("node-spotify-api");
 var moment = require("moment");
+var fs = require("fs");
 
 var myargs = process.argv;
 var myChoice = process.argv[2];
 var myoption = process.argv[3];
+var myString = process.argv[3];
 var artistName;
 
 
@@ -14,6 +16,7 @@ if (process.argv[2] === undefined && process.argv[3] === undefined) {
     console.log("Please make one of the following selections");
     console.log("concert-this <artist> or spotify-the-song <song Title> or  movie <movie Name> ");
 }
+function makeAChoice(){
 switch (myChoice) {
     case "concert-this":
         concertThis();
@@ -26,30 +29,38 @@ switch (myChoice) {
     case "movie-this":
         movieThis();
         break;
-
     case "do-what-it-says":
+         doWhatItSays();
+         break;
+  }
 }
-
 function getMyOptions() {
     if (myChoice === "spotify-this-song") {
         for (i = 4; i < myargs.length; i++) {
             myoption += " " + myargs[i];
-        }
+        }  
     }
     else {
         for (i = 4; i < myargs.length; i++) {
             myoption += "+" + myargs[i];
+            myString +=  " " + myargs[i];
         }
     }
+
+    myString = myString.trim();
     return myoption;
 }
 
 function concertThis() {
-    myoption = getMyOptions();
-    if (myoption === undefined || myoption === '') {
-        console.log("node liri.js concert-this <artist/ band name>")
+    if(process.argv[3] !== undefined) {
+        myoption = getMyOptions();
     }
-    else {
+    if (myoption === undefined || myoption === '') {
+       // console.log("node liri.js concert-this <artist/ band name>")
+        myoption = "back+street+boys";
+        console.log("Band : Back street Boys");
+    }
+    
         axios.get("https://rest.bandsintown.com/artists/" + myoption + "/events?app_id=codingbootcamp")
             .then(function (response) {
                 // console.log(response);
@@ -60,13 +71,13 @@ function concertThis() {
 
                 });
             });
-    }
+
 }
 
 function spotifyThatSong() {
 
     var spotify = new Spotify(keys.spotify);
-    if (process.argv[3] === undefined) {
+    if (process.argv[3].trim() === undefined) {
         myoption = "The Sign";
     }
     else {
@@ -102,11 +113,9 @@ function movieThis() {
     axios.get("http://www.omdbapi.com/?t=" + myoption + "&apikey=trilogy")
         .then(
             function (response) {
-                if (myoption !== "Mr. Nobody") {
-                    myoption = StringOption();
-                }
-
-                if (response.data.Title.trim() === myoption) {
+                var title = response.data.Title;
+                console.log(myString);
+                if (title == myString) {
                     console.log("Title of the movie         : " + response.data.Title);
                     console.log("Year the movie came out    : " + response.data.Year);
                     console.log("IMDB Rating of the movie   : " + response.data.imdbRating);
@@ -120,14 +129,18 @@ function movieThis() {
             }
         )
 }
-function StringOption() {
-    var myOptArr = myoption.split("+");
-     if(myOptArr.length > 1){
-         myoption = myOptArr[0];
-         console.log(myoption);
-         for(i=1;i < myOptArr.length;i++){
-             myoption+= " " + myOptArr[i];
-         }
-         return myoption.trim();
-     }
- }
+
+function doWhatItSays()
+{
+    var randomText = fs.readFile("./random.txt", function(err, data){
+        console.log(data.toString());
+        var command= data.toString().split(",");
+        console.log(command);
+
+        makeAChoice();
+        
+
+    });
+}
+
+makeAChoice();
