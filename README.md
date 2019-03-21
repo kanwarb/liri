@@ -1,12 +1,10 @@
+### Language Interpretation and Recognition Interface or (liri)
 
-## Language Interpretation and Recognition Interface or (liri)
+### Liri is a Command line based utility and can be run when the node server is running locally where liri is deployed
+    before you start please make sure you have the all the components required to run this utility
 
-# Liri is a Command line based utility and can be run when the node server is running locally where liri is deployed
-
-## before you start please make sure you have the all the components required to run this utility
-
-##  Repository ## 
-    Github. (Here)
+###  Repository 
+    This is the latest and only published repo
     
 ### How To Setup
 
@@ -42,5 +40,12 @@
         -  3rd Party NPM Packages (axios,)
         -  3rd Party API's ( spotify, bandsintown, imdbapi)
          
-    
+### Examples of commands in action
 
+![concert-this](concert-this.png)
+
+![spotify-this-song](spotify-this-song.png)
+
+![movie-this](movie-this.png)
+
+![do-what-it-says](do-what-it-says.png)

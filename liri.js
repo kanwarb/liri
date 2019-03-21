@@ -50,8 +50,9 @@ function getMyOptions() {
             myString +=  " " + myargs[i];
         }
     }
-
-    myString = myString.trim();
+    if(process.argv[3] !== undefined){
+        myString = myString.trim();
+    }
     return myoption;
 }
 
@@ -81,7 +82,7 @@ function concertThis() {
 function spotifyThatSong() {
 
     var spotify = new Spotify(keys.spotify);
-    if (process.argv[3].trim() === undefined) {
+    if (process.argv[3] === undefined) {
         myoption = "The Sign";
     }
     else {
@@ -140,8 +141,25 @@ function doWhatItSays()
         console.log(data.toString());
         console.log(data.toString().split(","));
         var command= data.toString().split(",");
-        myargs =  command.split(" ");
-        console.log(myargs);
+        myChoice = command[0]
+        myargs =  command[1].split(" ");
+        myoption = myargs[0].trim();
+        myString = myargs[0].trim();
+        if (myChoice === "spotify-this-song") {
+            for(i=1;i < myargs.length;i++){
+                myoption+= "+" + myargs[i] ;
+            }
+        }
+        else{
+            for (i =1; i < myargs.length; i++) {
+                myoption += "+" + myargs[i];
+                myString +=  " " + myargs[i];
+            }
+            // myoption = myoption.trim();
+            // myString = myString.trim();
+        }
+        
+        makeAChoice();
 
     });
 }
